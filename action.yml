@@ -1,0 +1,16 @@
+name: 'Linting composite action'
+description: 'Lint everything'
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Install earthly
+      uses: Luet-lab/luet-install-action@v1
+      with:
+        repository: quay.io/kairos/packages
+        packages: utils/earthly
+    - run: cd ${{ github.action_path }} && earthly +lint
+      shell: bash
