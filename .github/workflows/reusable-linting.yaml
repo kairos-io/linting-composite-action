@@ -5,6 +5,7 @@ jobs:
   golangci_lint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
           go-version: ^1.20
@@ -17,6 +18,7 @@ jobs:
   hadolint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: hadolint
         env:
           HADOLINT_VERSION: 2.12.0-alpine
@@ -26,6 +28,7 @@ jobs:
   renovate-validator:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: renovate-validate
         env:
           RENOVATE_VERSION: "35"
@@ -35,6 +38,7 @@ jobs:
   shellcheck-lint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: shellcheck-lint
         env:
           SHELLCHECK_VERSION: v0.9.0
@@ -44,6 +48,7 @@ jobs:
   yamllint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: yamllint
         shell: bash
         run: find . -name "*.yml" -or -name "*.yaml" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work cytopia/yamllint
