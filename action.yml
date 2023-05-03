@@ -20,7 +20,7 @@ runs:
 
     - name: renovate-validate
       env:
-        RENOVATE_VERSION: 35
+        RENOVATE_VERSION: "35"
       shell: bash
       run: docker run -v "$PWD":/work -w /work renovate/renovate renovate-config-validator 
 
