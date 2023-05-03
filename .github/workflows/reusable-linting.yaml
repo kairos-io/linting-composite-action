@@ -1,5 +1,10 @@
 on:
   workflow_call:
+    inputs:
+      yamldirs:
+        required: false
+        type: string
+        default: "."
 
 jobs:
   golangci_lint:
@@ -51,4 +56,4 @@ jobs:
       - uses: actions/checkout@v3
       - name: yamllint
         shell: bash
-        run: find . -name "*.yml" -or -name "*.yaml" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work cytopia/yamllint
+        run: find ${{ inputs.yamldirs }} -name "*.yml" -or -name "*.yaml" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work cytopia/yamllint
