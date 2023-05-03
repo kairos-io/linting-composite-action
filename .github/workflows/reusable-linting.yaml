@@ -1,14 +1,22 @@
 on:
   workflow_call:
     inputs:
+      # Set to a space separated list of directories where yamls should searched
       yamldirs:
         required: false
         type: string
         default: "."
 
+      # Set to "false" for repositories that are not golang applications
+      is-go:
+        required: false
+        type: boolean
+        default: true
+
 jobs:
   golangci_lint:
     runs-on: ubuntu-latest
+    if: ${{ inputs.is-go == 'true' }}
     steps:
       - uses: actions/checkout@v3
       - name: golangci-lint
