@@ -33,7 +33,7 @@ jobs:
         env:
           HADOLINT_VERSION: 2.12.0-alpine
         shell: bash
-        run: find . -name "Dockerfile*" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work "hadolint/hadolint:${HADOLINT_VERSION}" hadolint
+        run: find . -path "./examples" -prune -o -name "Dockerfile.*" -print | xargs -r -n1 docker run -v "$PWD":/work -w /work "hadolint/hadolint:${HADOLINT_VERSION}" hadolint
 
   renovate-validator:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
         env:
           SHELLCHECK_VERSION: v0.9.0
         shell: bash
-        run: find . -name "*.sh" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work "koalaman/shellcheck-alpine:${SHELLCHECK_VERSION}" shellcheck
+        run: find . -path "./examples" -prune -o -name "*.sh" -print | xargs -r -n1 docker run -v "$PWD":/work -w /work "koalaman/shellcheck-alpine:${SHELLCHECK_VERSION}" shellcheck
 
   yamllint:
     runs-on: ubuntu-latest
@@ -61,4 +61,4 @@ jobs:
       - uses: actions/checkout@v3
       - name: yamllint
         shell: bash
-        run: find ${{ inputs.yamldirs }} -name "*.yml" -or -name "*.yaml" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work cytopia/yamllint
+        run: find ${{ inputs.yamldirs }} -path "./examples" -prune -o -name "*.yml" -or -name "*.yaml" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work cytopia/yamllint
