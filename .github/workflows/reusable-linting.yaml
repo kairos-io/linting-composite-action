@@ -16,7 +16,7 @@ on:
 jobs:
   golangci_lint:
     runs-on: ubuntu-latest
-    if: ${{ inputs.is-go == 'true' }}
+    if: ${{ inputs.is-go }}
     steps:
       - uses: actions/checkout@v3
       - name: golangci-lint
