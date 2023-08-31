@@ -23,7 +23,7 @@ jobs:
         env:
           GOLANGCILINT_VERSION: v1.52-alpine
         shell: bash
-        run: docker run -v $PWD:/work -w /work golangci/golangci-lint:v1.52-alpine golangci-lint run
+        run: docker run -v $PWD:/work -w /work golangci/golangci-lint:${GOLANGCILINT_VERSION} golangci-lint run
 
   hadolint:
     runs-on: ubuntu-latest
