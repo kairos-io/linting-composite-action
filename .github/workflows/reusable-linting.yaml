@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ inputs.is-go }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: golangci-lint
         env:
           GOLANGCILINT_VERSION: v1.55.2-alpine
@@ -32,7 +32,7 @@ jobs:
   hadolint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: hadolint
         env:
           HADOLINT_VERSION: 2.12.0-alpine
@@ -42,7 +42,7 @@ jobs:
   renovate-validator:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: renovate-validate
         env:
           RENOVATE_VERSION: "35"
@@ -52,7 +52,7 @@ jobs:
   shellcheck-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: shellcheck-lint
         env:
           SHELLCHECK_VERSION: v0.9.0
@@ -62,7 +62,7 @@ jobs:
   yamllint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: yamllint
         shell: bash
         run: find ${{ inputs.yamldirs }} -path "./examples" -prune -o -name "*.yml" -or -name "*.yaml" -print  | xargs -r -n1 docker run -v "$PWD":/work -w /work cytopia/yamllint
