@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: golangci-lint
         env:
-          GOLANGCILINT_VERSION: v1.55.2-alpine
+          GOLANGCILINT_VERSION: v1.59.1-alpine
         shell: bash
         run: docker run -v $PWD:/work -w /work golangci/golangci-lint:${GOLANGCILINT_VERSION} golangci-lint --timeout=${{ inputs.timeout }} run
 
