@@ -27,7 +27,7 @@ jobs:
         env:
           GOLANGCILINT_VERSION: latest-alpine
         shell: bash
-        run: docker run -v $PWD:/work -w /work golangci/golangci-lint:${GOLANGCILINT_VERSION} golangci-lint --timeout=${{ inputs.timeout }} run
+        run: docker run -v $PWD:/work -w /work golangci/golangci-lint:${GOLANGCILINT_VERSION} golangci-lint -v --timeout=${{ inputs.timeout }} run
 
   hadolint:
     runs-on: ubuntu-latest
