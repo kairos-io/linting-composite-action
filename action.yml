@@ -10,7 +10,7 @@ runs:
     - name: golangci-lint
       uses: golangci/golangci-lint-action@v6.1.0
       with:
-        version: v1.55.2
+        version: latest
 
     - name: hadolint
       env:
